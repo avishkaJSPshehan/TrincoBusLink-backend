@@ -2,6 +2,7 @@ const express = require("express")
 const mongoose = require("mongoose")
 const cors = require("cors")
 const UserModel = require('./models/user')
+const BusModel = require('./models/buses')
 
 const app = express()
 app.use(express.json())
@@ -20,6 +21,24 @@ app.post('/login',(req,res) => {
             }
             else{
                 res.json("The password is incorrect")
+            }
+        }
+        else{
+            res.json("No record Existed")
+        }
+    })
+})
+
+app.post('/',(req,res) => {
+    const {fromLocation,toLocation,travelDate} = req.body;
+    BusModel.find({fromLocation:fromLocation})
+    .then(bus => {
+        if(bus){
+            if(bus.fromLocation === fromLocation){
+                res.json("Success")
+            }
+            else{
+                res.json("The location is incorrect")
             }
         }
         else{
