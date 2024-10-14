@@ -29,23 +29,28 @@ app.post('/login',(req,res) => {
     })
 })
 
-app.post('/',(req,res) => {
-    const {fromLocation,toLocation,travelDate} = req.body;
-    BusModel.find({fromLocation:fromLocation})
-    .then(bus => {
-        if(bus){
-            if(bus.fromLocation === fromLocation){
-                res.json("Success")
-            }
-            else{
-                res.json("The location is incorrect")
-            }
-        }
-        else{
-            res.json("No record Existed")
+app.post('/', (req, res) => {
+    const { fromLocation, toLocation, travelDate } = req.body;
+
+    // Search for buses matching the fromLocation and toLocation
+    BusModel.find({ 
+        fromLocation: fromLocation, 
+        toLocation: toLocation 
+    })
+    .then(buses => {
+        // Check if buses were found
+        if (buses.length > 0) {
+            res.json(buses); // Respond with the list of buses found
+        } else {
+            res.status(404).json("No buses found for the specified locations"); // No buses found
         }
     })
-})
+    .catch(error => {
+        console.error("Error retrieving buses:", error);
+        res.status(500).json("An error occurred while searching for buses"); // Handle errors
+    });
+});
+
 
 
 app.post('/signin', (req,res) => {
