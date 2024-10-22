@@ -1,3 +1,4 @@
+require("dotenv/config")
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -10,10 +11,7 @@ app.use(cors());
 
 // Connect to MongoDB (replace with your actual MongoDB connection string)
 mongoose
-  .connect("mongodb://localhost:27017/testDatabase", { // Replace "testDatabase" with your actual database name
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(process.env.MONGODB_URI)
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
