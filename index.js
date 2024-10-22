@@ -6,12 +6,14 @@ const cors = require("cors");
 // const BusModel = require("./models/buses"); // Replace with the actual path to your buses model
 
 const userRouter = require("./routes/user");
+const busRouter = require("./routes/bus");
 
 const app = express();
 app.use(express.json());
 app.use(cors());
 
 app.use("/user", userRouter);
+app.use("/bus", busRouter);
 
 // Connect to MongoDB (replace with your actual MongoDB connection string)
 mongoose
