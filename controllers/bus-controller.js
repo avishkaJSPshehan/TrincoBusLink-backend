@@ -1,6 +1,6 @@
 const BusModel = require("../models/buses");
 
-exports.addBus = () => {
+exports.addBus = (req, res) => {
   const newBus = new BusModel(req.body);
   newBus
     .save()

@@ -9,5 +9,7 @@ const router = express.Router();
 
 router.post("/", addBus);
 router.get("/all", getAllBus);
-router.put("/", updateBus);
-router.delete("/", deleteBus);
+router.put("/update/:id", updateBus);
+router.delete("/delete/:id", deleteBus);
+
+module.exports = router;
