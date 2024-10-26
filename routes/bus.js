@@ -1,14 +1,15 @@
 const express = require("express");
-
-const addBus = require("../controllers/bus-controller").addBus;
-const getAllBus = require("../controllers/bus-controller").getAllBus;
-const updateBus = require("../controllers/bus-controller").updateBus;
-const deleteBus = require("../controllers/bus-controller").deleteBus;
-const searchBus = require("../controllers/bus-controller").searchBus;
+const { getBus } = require("../controllers/bus-controller");
+const { addBus } = require("../controllers/bus-controller");
+const { getAllBus } = require("../controllers/bus-controller");
+const { updateBus } = require("../controllers/bus-controller");
+const { deleteBus } = require("../controllers/bus-controller");
+const { searchBus } = require("../controllers/bus-controller");
 
 const router = express.Router();
 
 router.post("/", addBus);
+router.get("/", getBus);
 router.get("/all", getAllBus);
 router.put("/update/:id", updateBus);
 router.delete("/delete/:id", deleteBus);

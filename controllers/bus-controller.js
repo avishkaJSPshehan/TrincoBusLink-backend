@@ -14,6 +14,13 @@ exports.getAllBus = (req, res) => {
     .catch((err) => res.status(500).json({ message: "error", error: err }));
 };
 
+exports.getBus = (req, res) => {
+  const { id } = req.query;
+  BusModel.findOne({ _id: id })
+    .then((bus) => res.status(200).json(bus))
+    .catch((err) => res.status(500).json({ message: "error", error: err }));
+};
+
 exports.updateBus = (req, res) => {
   const busId = req.params.id;
   BusModel.findByIdAndUpdate(busId, req.body, { new: true })
