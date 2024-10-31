@@ -57,7 +57,7 @@ exports.searchBus = (req, res) => {
 };
 
 exports.bookSeats = async (req, res) => {
-  const { busId, date, userId, seats } = req.body;
+  const { busId, date, userId, seats, paymentIntent } = req.body;
   const key = `${busId}-${date}`;
   const obj = await BookingModel.findOne({ key: key });
   let r_Obj;
@@ -66,6 +66,7 @@ exports.bookSeats = async (req, res) => {
     bookings.push({
       user: userId,
       seats: seats,
+      paymentIntent: paymentIntent,
     });
     obj.bookings = bookings;
     r_Obj = await obj.save();
