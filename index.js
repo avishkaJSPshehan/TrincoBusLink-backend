@@ -7,6 +7,7 @@ const cors = require("cors");
 
 const userRouter = require("./routes/user");
 const busRouter = require("./routes/bus");
+const paymentRouter = require("./routes/payment");
 
 const app = express();
 app.use(express.json());
@@ -14,6 +15,7 @@ app.use(cors());
 
 app.use("/user", userRouter);
 app.use("/bus", busRouter);
+app.use("/payment", paymentRouter);
 
 // Connect to MongoDB (replace with your actual MongoDB connection string)
 mongoose
