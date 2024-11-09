@@ -8,7 +8,7 @@ const BusSchema = new mongoose.Schema({
   duration: String,
   busType: String,
   model: String,
-  scheduleId: String,
+  busNo: String,
   depotName: String,
   price: String,
   availableSeats: String,
